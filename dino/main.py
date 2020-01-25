@@ -1,6 +1,7 @@
 import random
 import time
 
+from bird import Bird
 from cactus import Cactus
 from game import Game
 from dino import Dino
@@ -35,7 +36,7 @@ def main():
             if random.randint(0, 2):
                 game.add_enemy(Cactus(Game.win_width, Game.win_height - 227, 60, 100))
             else:
-                game.add_enemy(Cactus(Game.win_width, Game.win_height - 330, 100, 50))
+                game.add_enemy(Bird(Game.win_width, Game.win_height - 330, 100, 50))
             time_since_last_spawn = 0
             enemy_spawn_threshold = random.choice(spawn_thresholds)
 
