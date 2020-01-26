@@ -8,7 +8,7 @@ from dino import Dino
 
 
 def time_millis():
-    return time.time_ns() // 1_000_000
+    return int(time.time() * 1000)  # time.time_ns() // 1_000_000
 
 
 def get_cactus():
