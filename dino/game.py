@@ -13,10 +13,6 @@ class Game:
     win_width = 1450
     win_height = 800
 
-    @staticmethod
-    def millis():
-        return time.time_ns() // 1_000_000
-
     def __init__(self):
         self.win = Window((Game.win_width, Game.win_height))
         self.sky = Sky(Game.win_width, Game.win_height)
@@ -25,7 +21,6 @@ class Game:
         self.enemy_velocity = 250
         self.score = 0
         self.create_handlers()
-        self.last_time = Game.millis()
         self.enemies = []
 
     def create_handlers(self):

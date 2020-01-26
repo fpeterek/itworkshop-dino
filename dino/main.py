@@ -39,7 +39,7 @@ def main():
 
     while game.window_is_open:
 
-        current_time = Game.millis()
+        current_time = time_millis()
         delta = (current_time - last_time) / 1000
         game.tick(delta)
         last_time = current_time
