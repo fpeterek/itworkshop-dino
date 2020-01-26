@@ -16,7 +16,7 @@ python dino/
 Během workshopu
 
 ```bash
-echo '' > main.py
+echo '' > dino/main.py
 ```
 
 ## Resources
