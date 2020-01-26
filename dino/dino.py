@@ -67,7 +67,8 @@ class Dino:
         self.y += self.force * dt
 
     def update_sprite(self, dt):
-        self.counter += dt
+        if self.can_jump:
+            self.counter += dt
         if self.counter > self.time_per_frame:
             self.counter -= self.time_per_frame
             self.phase += 1
@@ -89,7 +90,7 @@ class Dino:
     def collides_with(self, enemy) -> bool:
         hitbox_mod = self.width // 10
         x_wise_miss = self.x + self.width - hitbox_mod < enemy.x or self.x + hitbox_mod > enemy.x + enemy.width
-        y_wise_miss = self.y + self.height < enemy.y or self.y > enemy.y + enemy.height
+        y_wise_miss = self.y + self.height - hitbox_mod < enemy.y or self.y > enemy.y + enemy.height
         return not (x_wise_miss or y_wise_miss)
 
     def die(self):

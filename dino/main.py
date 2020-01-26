@@ -16,7 +16,7 @@ def get_cactus():
 
 
 def get_bird():
-    return Bird(Game.win_width, Game.win_height - 330, 100, 50)
+    return Bird(Game.win_width, Game.win_height - 330, 96, 48)
 
 
 def get_enemy():

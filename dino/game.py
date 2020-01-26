@@ -1,6 +1,7 @@
 import tkinter
 
 from dino import Dino
+from sky import Sky
 from window import Window
 from platform import Platform
 
@@ -18,6 +19,7 @@ class Game:
 
     def __init__(self):
         self.win = Window((Game.win_width, Game.win_height))
+        self.sky = Sky(Game.win_width, Game.win_height)
         self.platform = Platform(Game.win_width, 96, Game.win_height - 96 - 30)
         self.dino = None
         self.enemy_velocity = 250
@@ -70,8 +72,13 @@ class Game:
         for enemy in self.enemies:
             enemy.move(delta)
 
+    def tick_enemies(self, dt: float):
+        for enemy in self.enemies:
+            enemy.tick(dt)
+
     def update_enemies(self, dt: float):
         self.move_enemies(dt)
+        self.tick_enemies(dt)
         self.remove_enemies()
 
     def update_score(self, dt: float):
@@ -86,6 +93,7 @@ class Game:
         self.update_enemies(dt)
         self.update_score(dt)
         self.update_platform(dt)
+        self.sky.tick(dt)
 
     def tick(self, timedelta: float):
         if self.dino.alive:
@@ -106,6 +114,7 @@ class Game:
 
     def draw(self):
         self.win.clear()
+        self.win.draw(self.sky)
         self.win.draw(self.platform)
         for enemy in self.enemies:
             self.win.draw(enemy)

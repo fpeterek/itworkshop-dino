@@ -32,6 +32,9 @@ class Cactus:
         # canvas.create_rectangle(x, y, x + self.width, y + self.height, fill='#53d45f')
         canvas.create_image(x, y, image=self.sprite, anchor=tkinter.NW)
 
+    def tick(self, dt: float):
+        return
+
     def move(self, dx):
         self.x += dx
 
