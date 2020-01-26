@@ -24,6 +24,6 @@ class Platform:
             self.begin += self.sprite_w
 
     def draw(self, canvas: tkinter.Canvas):
-        begin = int(self.begin)
+        begin = round(self.begin)
         for i in range(begin, self.width + self.sprite_w, self.sprite_w):
             canvas.create_image(begin + i, self.y, image=self.img, anchor=tkinter.NW)

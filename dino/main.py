@@ -11,11 +11,23 @@ def time_millis():
     return time.time_ns() // 1_000_000
 
 
+def get_cactus():
+    return Cactus(Game.win_width, Game.win_height - 221, 96, 96)
+
+
+def get_bird():
+    return Bird(Game.win_width, Game.win_height - 330, 100, 50)
+
+
+def get_enemy():
+    return get_cactus() if random.randint(0, 2) else get_bird()
+
+
 def main():
 
     game = Game()
 
-    player = Dino(50, game.win_height - 250, 50, 50)
+    player = Dino(50, game.win_height - 250, 64, 64)
     game.add_player(player)
 
     spawn_thresholds = [1.5, 1.75, 2, 2.5, 3, 3.50]
@@ -26,6 +38,7 @@ def main():
     last_time = time_millis()
 
     while game.window_is_open:
+
         current_time = Game.millis()
         delta = (current_time - last_time) / 1000
         game.tick(delta)
@@ -33,10 +46,7 @@ def main():
 
         time_since_last_spawn += delta
         if time_since_last_spawn >= enemy_spawn_threshold:
-            if random.randint(0, 2):
-                game.add_enemy(Cactus(Game.win_width, Game.win_height - 227, 60, 100))
-            else:
-                game.add_enemy(Bird(Game.win_width, Game.win_height - 330, 100, 50))
+            game.add_enemy(get_enemy())
             time_since_last_spawn = 0
             enemy_spawn_threshold = random.choice(spawn_thresholds)
 
