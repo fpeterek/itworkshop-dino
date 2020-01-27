@@ -37,6 +37,9 @@ def main():
 
     last_time = time_millis()
 
+    # game.change_ground('resources/grass.png')
+    # game.increase_speed()
+
     while game.window_is_open:
 
         current_time = time_millis()

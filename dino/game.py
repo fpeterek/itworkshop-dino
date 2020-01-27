@@ -33,6 +33,7 @@ class Game:
             self.dino.alive = True
             self.enemies = []
             self.score = 0
+            self.enemy_velocity = 250
 
     def jump(self):
         if self.dino:
@@ -120,8 +121,14 @@ class Game:
         self.display_score()
         self.win.update()
 
+    def change_ground(self, path):
+        self.platform.load_sprite(path)
+
     def add_player(self, dino: Dino):
         self.dino = dino
 
     def add_enemy(self, enemy):
         self.enemies.append(enemy)
+
+    def increase_speed(self):
+        self.enemy_velocity += 100

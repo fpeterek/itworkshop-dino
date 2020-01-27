@@ -7,11 +7,22 @@ class Platform:
 
     color = '#807d75'
 
-    def __init__(self, width, height, y):
-        self.sprite_w = 96
-        img = Image.open('resources/grass.png')
+    textures = {}
+
+    def load_sprite(self, path: str):
+        res = Platform.textures.get(path)
+        if res:
+            self.img = res
+            return
+        img = Image.open(path)
         img = img.resize((self.sprite_w, self.sprite_w), Image.NONE)
         self.img = ImageTk.PhotoImage(img)
+        Platform.textures[path] = self.img
+
+    def __init__(self, width, height, y):
+        self.sprite_w = 96
+        self.img = None
+        self.load_sprite('resources/sand.png')
         self.x = 0
         self.begin = 0
         self.y = y
