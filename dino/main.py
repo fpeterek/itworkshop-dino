@@ -37,22 +37,39 @@ def main():
 
     last_time = time_millis()
 
+    max_speedups = 3
+    speedups = 0
+    speedup_after = 15.0
+    speedup_timer = 0
+
+    # Takto lze změnit texturu země ve hře
+    # Případně lze dodat vlastní textury do složky resources a následně
+    # Lze využít i vlastních textur
     # game.change_ground('resources/grass.png')
-    # game.increase_speed()
+    # game.change_ground('resources/grass_alt.png')
 
     while game.window_is_open:
 
+        # Počítání časového rozdílu
         current_time = time_millis()
         delta = (current_time - last_time) / 1000
         game.tick(delta)
         last_time = current_time
 
+        # Logika vytváření nepřátelských entit
         time_since_last_spawn += delta
         if time_since_last_spawn >= enemy_spawn_threshold:
             game.add_enemy(get_enemy())
             time_since_last_spawn = 0
             enemy_spawn_threshold = random.choice(spawn_thresholds)
 
+        # Kolize s nepřátelskými entitami
         for enemy in game.enemies:
             if player.collides_with(enemy):
                 player.die()
+
+        # Logika zrychlování hry
+        speedup_timer += delta
+        if speedups < max_speedups and speedup_timer >= speedup_after:
+            speedup_timer = 0
+            game.increase_speed()
