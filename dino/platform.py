@@ -22,7 +22,7 @@ class Platform:
     def __init__(self, width, height, y):
         self.sprite_w = 96
         self.img = None
-        self.load_sprite('resources/sand.png')
+        self.load_sprite('resources/grass.png')
         self.x = 0
         self.begin = 0
         self.y = y
