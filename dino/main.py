@@ -47,7 +47,7 @@ def main():
     # Lze využít i vlastních textur
     # game.change_ground('resources/grass.png')
     # game.change_ground('resources/grass_alt.png')
-
+    # game.change_ground('resources/sand.png')
     while game.window_is_open:
 
         # Počítání časového rozdílu
